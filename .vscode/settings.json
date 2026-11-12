@@ -1,0 +1,4 @@
+{
+    "intelliphp.inlineSuggestionsEnabled": true,
+    "editor.inlineSuggest.edits.allowCodeShifting": "never"
+}

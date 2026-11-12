@@ -63,3 +63,12 @@ Below is the catalog of available slash commands you can invoke at any time duri
 | `/add-skill <name> <purpose>` | Registers a new slash command name and description into this `SKILLS.md` catalog. | `/add-skill benchmark "Compare performance of two approaches"` |
 | `/reveal-solution` | **Exceptional command:** Used only after you have submitted a genuine attempt or exhausted an exercise to discuss a complete reference solution. | `/reveal-solution` |
 
+---
+
+## 6. Version Control & Git
+
+| Command | Description | Usage Example |
+|---|---|---|
+| `/git-save` | Automatically inspects what was created and modified, crafts a descriptive commit message, commits, and pushes to GitHub. | `/git-save` or `/save` |
+
+

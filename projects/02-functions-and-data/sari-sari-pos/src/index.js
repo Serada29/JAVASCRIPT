@@ -135,7 +135,8 @@ function checkout(inventory, cart, cashTendered, isSeniorOrPwd, promoCode) {
             return { success: false, message: `Product Id :${cart[i].productId} is Out of Stock ` }
 
         const total = product.price * cart[i].quantity;
-        subtotal += total
+        subtotal += total;
+
 
 
     }
@@ -144,9 +145,15 @@ function checkout(inventory, cart, cashTendered, isSeniorOrPwd, promoCode) {
     const finalTotal = subtotal - discount;
 
     // Validate if Cash tendered
-    if (cashTendered)
+    if (!Number.isInteger(cashTendered) || cashTendered <= finalTotal) {
+        return { success: false, message: `Cash tendered must be valid number & greater than ${finalTotal}` }
+    }
 
-        return finalTotal;
+    const change = cashTendered - finalTotal;
+
+    return change.toFixed(2);
+
+
 
 }
 
@@ -156,7 +163,7 @@ const cart = [{ productId: 1, quantity: 1 }, { productId: 3, quantity: 1 }, { pr
 
 
 
-console.log(checkout(inventory, cart, true, true, ""))
+console.log(checkout(inventory, cart, 200, true, ""))
 // console.log("Find Product By ID TEST")
 // console.log(findProductById(inventory, 1))
 // console.log(findProductById(inventory, 5))
