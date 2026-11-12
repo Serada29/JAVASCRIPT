@@ -1,0 +1,15 @@
+# Node.js dependencies and logs
+node_modules/
+npm-debug.log*
+*.log
+
+# Environment secrets
+.env
+.env.*
+
+# Obsidian local workspace state (prevents cross-PC merge conflicts)
+.obsidian/
+
+# OS & editor files
+.DS_Store
+Thumbs.db

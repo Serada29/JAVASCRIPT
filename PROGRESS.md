@@ -1,0 +1,59 @@
+# Learning Progress Tracker
+
+**Last Updated:** 2026-11-11
+**Current Curriculum Level:** Level 0 — Zero Programming Knowledge (Running Diagnostic Baseline for Levels 1–2)
+**Active Lesson:** Lesson 02 — Strings and Text Output (Paused for Diagnostic Project)
+**Active Exercise:** None
+**Active Project:** Diagnostic Project — Sari-Sari Store Terminal POS (`projects/02-functions-and-data/sari-sari-pos/`)
+
+---
+
+## Overall Level Progression
+
+| Level | Title | Status | Projects Completed | Mastery Checkpoint |
+|---|---|---|---|---|
+| **Level 0** | Zero Programming Knowledge | **In Progress** | 0 / 4 | Not Started |
+| **Level 1** | Variables and Logic | Locked | 0 / 6 | Locked |
+| **Level 2** | Functions and Data Structures | Locked | 0 / 6 | Locked |
+| **Level 3** | Intermediate JavaScript | Locked | 0 / 5 | Locked |
+| **Level 4** | Browser JavaScript | Locked | 0 / 5 | Locked |
+| **Level 5** | Asynchronous JavaScript | Locked | 0 / 4 | Locked |
+| **Level 6** | Advanced JavaScript | Locked | 0 / 5 | Locked |
+| **Level 7** | Data Structures, Algorithms, & Engineering | Locked | 0 / 4 | Locked |
+| **Level 8** | Node.js and Full-Stack Development | Locked | 0 / 4 | Locked |
+
+---
+
+## Level 0 Milestone Checklist
+
+### Lessons & Exercises
+- [x] **Lesson 00:** Introduction to Programming, JavaScript, Runtimes, and the Console
+  - [x] MDN Reading Assignment 00 completed
+  - [x] Lesson 00 Knowledge Check & Diagnostics passed
+  - [x] Exercise 00-01: First Instructions & Console Output (`exercises/00-foundations/exercise-01.js`)
+- [x] **Lesson 01:** Statements, Syntax, and Comments
+  - [x] MDN Reading Assignment 01 completed
+  - [x] Lesson 01 Knowledge Check passed
+  - [x] Exercise 00-02: Statements, Syntax, and Comments (`exercises/00-foundations/exercise-02.js`)
+- [ ] **Lesson 02:** Strings and Text Output
+  - [ ] MDN Reading Assignment 02 completed
+  - [ ] Lesson 02 Knowledge Check passed
+  - [ ] Exercise 00-03: Strings, Quotes, and Escape Sequences (`exercises/00-foundations/exercise-03.js`)
+- [ ] **Lesson 03:** Numbers and Basic Arithmetic
+
+### Level 0 Projects
+- [ ] **Project 1:** Hello World
+- [ ] **Project 2:** Console Greeter
+- [ ] **Project 3:** Personal Profile Generator
+- [ ] **Project 4:** Basic Receipt Calculator
+
+---
+
+## Spaced Repetition Queue
+
+*Items will be scheduled here once initial lessons and exercises are completed.*
+
+| Topic | Last Reviewed | Next Scheduled Review | Interval Stage |
+|---|---|---|---|
+| *None yet* | — | — | — |
+
