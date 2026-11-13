@@ -1,4 +1,4 @@
-# Acceptance Criteria — Sari-Sari Store Terminal POS & Inventory Manager
+	 # Acceptance Criteria — Sari-Sari Store Terminal POS & Inventory Manager
 
 Your implementation in `src/` must satisfy all requirements below without using any external libraries or frameworks (100% pure Vanilla JavaScript running in Node.js).
 

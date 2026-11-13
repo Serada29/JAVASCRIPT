@@ -117,43 +117,64 @@ function getLowStockReport(inventory) {
 // , cashTendered, isSeniorOrPwd, promoCode
 function checkout(inventory, cart, cashTendered, isSeniorOrPwd, promoCode) {
 
-    let subtotal = 0
+
+    let subtotal = 0;
     if (cart.length === 0) return { success: false, message: "Cart is empty" };
 
     for (let i = 0; i < cart.length; i++) {
-
         const product = findProductById(inventory, cart[i].productId);
+        // Validate cart is not empty
+
         if (product === null) {
             return { success: false, message: `Product Id ${cart[i].productId}  is not exist ` }
         }
+        // Validate quantiy is interger
         if (!Number.isInteger(cart[i].quantity)) return { success: false, message: `Quantity must be Integer. ${cart[i].quantity} ` }
+        // Validate if quantity is > 0
         if (cart[i].quantity <= 0) {
             return { success: false, message: `Product quantity is less than 0  ` }
         }
-
+        // Validate if stock is not < to the cart quantity
         if (product.stock < cart[i].quantity)
             return { success: false, message: `Product Id :${cart[i].productId} is Out of Stock ` }
 
+        // Calculate total
         const total = product.price * cart[i].quantity;
         subtotal += total;
-
-
-
     }
 
+    // Calculate Discount
     const discount = calculateDiscount(subtotal, isSeniorOrPwd, promoCode)
     const finalTotal = subtotal - discount;
 
     // Validate if Cash tendered
-    if (!Number.isInteger(cashTendered) || cashTendered <= finalTotal) {
+    if (typeof cashTendered !== "number" || Number.isNaN(cashTendered) || cashTendered < finalTotal) {
         return { success: false, message: `Cash tendered must be valid number & greater than ${finalTotal}` }
     }
 
     const change = cashTendered - finalTotal;
 
-    return change.toFixed(2);
+
+    // Update Inventory
+    console.log("--------- OFFICIAL RECEIPT---------------");
+
+    cart.forEach(item => {
+        const product = findProductById(inventory, item.productId);
+        product.stock -= item.quantity;
+
+        console.log(`Product Name : ${product.name}, Quantity:${item.quantity}, Line Total: ${product.price * item.quantity}`);
 
 
+
+    });
+    console.log(`Subtotal : ${subtotal}`);
+    console.log(`Discount : ${discount}`);
+    console.log(`Final Total : ${finalTotal}`);
+    console.log(`Cash Paid : ${cashTendered}`);
+    console.log(`Change : ${change.toFixed(2)}`);
+
+    console.log("---------------------------------------------");
+    return { success: true, subtotal, discount, finalTotal, change };
 
 }
 

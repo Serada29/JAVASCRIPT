@@ -87,6 +87,15 @@ Whenever a conceptual misunderstanding surfaces during quizzes, code tracing, ex
 - **Verification Exercise / Question:** Compute `subtotal` cleanly using `findProductById` (or directly inside Phase 1's loop where `product` is already retrieved) with a running accumulator variable (`let subtotal = 0`).
 - **Resolution Evidence:** 2026-11-12 — Eliminated redundant array/nested loop, computed `product.price * cart[i].quantity` inside Phase 1's loop into `subtotal`, and verified exact sum `176` in Node.js.
 
+## [MISC-010] Premature State Mutation Inside Validation Loop & Premature Return (`return inventory[j].stock = ...`)
+- **Date Identified:** 2026-11-13
+- **Status:** Improving
+- **Developer's Incorrect Mental Model:** Placed stock deduction (`for (let j...) return inventory[j].stock = ...`) inside `checkout()`'s Phase 1 validation loop, breaking atomicity and returning `14` on the first item.
+- **Correct Engineering Mental Model:** Keep validation completely read-only. Only deduct stock in a separate Phase 3 loop *after* every item and `cashTendered` have passed validation. Additionally, `return x = y` exits the function immediately with `y`; never place `return` inside a loop that must process multiple items.
+- **Root Cause Analysis:** Trying to finish validation + subtotal + stock update all in a single pass, plus recurring `return` inside loop habit.
+- **Verification Exercise / Question:** Move stock deduction into Phase 3 after `cashTendered` validation, verify TC-05 and TC-07 leave `inventory` stocks untouched on failure, and return `{ success: true, subtotal, discount, finalTotal, change }`.
+- **Resolution Evidence:** 2026-11-13 — Moved stock deduction into Phase 3 (`cart.forEach`) after `cashTendered` validation and verified receipt + return object on happy path; awaiting full TC-01..TC-08 test run (TC-05/TC-07 verification).
+
 ---
 
 ### Entry Template

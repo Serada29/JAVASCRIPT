@@ -46,6 +46,7 @@ Below is the catalog of available slash commands you can invoke at any time duri
 | Command | Description | Usage Example |
 |---|---|---|
 | `/exercise-checker` | Evaluates your completed exercise code, runs it in Node.js, validates answers, and updates your trackers. | `/exercise-checker` |
+| `/feedback` | Reviews in-progress code/answers, diagnoses bugs & thinking needed, gives hints, and teaches 1 relevant new JS concept/method. | `/feedback` |
 | `/review-code` | Performs a full Senior Engineer Code Review on your submitted implementation and issues a formal `PROJECT VERDICT`. | `/review-code` |
 | `/misconception-check` | Tests a specific misconception recorded in `MISCONCEPTIONS.md` to verify if it is resolved. | `/misconception-check` |
 | `/refactor-challenge` | Challenges you to improve the readability, structure, or efficiency of your working code without rewriting it for you. | `/refactor-challenge` |
