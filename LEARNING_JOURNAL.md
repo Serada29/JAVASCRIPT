@@ -58,3 +58,16 @@ This journal records every mentorship session, key concepts explored, breakthrou
 ### Status
 - Awaiting Developer's answers to the Pre-Coding Knowledge Check and Independent Plan before coding in `src/`.
 
+---
+
+## Session 04 — 2026-11-16
+
+### Focus
+- Completed and officially evaluated **Diagnostic Project: Sari-Sari Store Terminal POS & Inventory Manager** (`projects/02-functions-and-data/sari-sari-pos/src/index.js`) via `/exercise-checker`.
+
+### Outcome & Calibration
+- **Verdict:** **PASSED** (8/8 test scenarios verified in Node.js, including atomic rollback on TC-05 and TC-07).
+- **Misconceptions Resolved:** `MISC-002` through `MISC-010` resolved across struggle-first debugging (loop bounds, premature `return`, `typeof`/`Number.isNaN`, global scope accumulator leaks, `[null]` array wrapping, array-vs-object property access, and read-only validation before mutation).
+- **Calibrated `MASTERY_MAP.md`:** Level 1–2 topics scored at `2` (Guided Understanding) and `3` (Independent Competence) based on observed evidence.
+- **Formal Review Saved:** `reviews/project-reviews/diagnostic-sari-sari-pos-review.md`.
+

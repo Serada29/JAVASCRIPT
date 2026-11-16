@@ -1,10 +1,10 @@
 # Learning Progress Tracker
 
-**Last Updated:** 2026-11-11
-**Current Curriculum Level:** Level 0 — Zero Programming Knowledge (Running Diagnostic Baseline for Levels 1–2)
-**Active Lesson:** Lesson 02 — Strings and Text Output (Paused for Diagnostic Project)
-**Active Exercise:** None
-**Active Project:** Diagnostic Project — Sari-Sari Store Terminal POS (`projects/02-functions-and-data/sari-sari-pos/`)
+**Last Updated:** 2026-11-16
+**Current Curriculum Level:** Level 1–2 Calibration (Diagnostic Project `sari-sari-pos` PASSED)
+**Active Lesson:** Section 1.1 Fundamentals Deep-Dive (`documentation/concept-notes/1.1-fundamentals/`)
+**Active Exercise:** Section 1.1 Topic & Combined Challenges (`exercises/01-variables-and-logic/`)
+**Active Project:** Diagnostic Project — Sari-Sari Store Terminal POS (**PASSED** — `projects/02-functions-and-data/sari-sari-pos/`)
 
 ---
 
@@ -55,5 +55,8 @@
 
 | Topic | Last Reviewed | Next Scheduled Review | Interval Stage |
 |---|---|---|---|
-| *None yet* | — | — | — |
+| Array Loop Bounds (`0` to `< length`) | 2026-11-16 | 2026-11-19 | 3d |
+| Early `return` vs Post-Loop `return` | 2026-11-16 | 2026-11-19 | 3d |
+| `typeof` & `Number.isNaN()` Validation | 2026-11-16 | 2026-11-19 | 3d |
+| Local vs Global Scope & Object References | 2026-11-16 | 2026-11-19 | 3d |
 

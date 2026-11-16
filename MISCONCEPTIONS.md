@@ -17,12 +17,12 @@ Whenever a conceptual misunderstanding surfaces during quizzes, code tracing, ex
 
 ## [MISC-002] Missing Return Value & Undefined Arithmetic (NaN)
 - **Date Identified:** 2026-11-11
-- **Status:** Improving
+- **Status:** Resolved
 - **Developer's Incorrect Mental Model:** Correctly identified that a function without `return` yields `undefined`, but guessed `undefined + 10` might equal `20` (unsure what JavaScript produces).
 - **Correct Engineering Mental Model:** `undefined` coerced to a number during arithmetic yields `NaN` (Not-a-Number). Therefore `undefined + 10` evaluates to `NaN`, and any further math using `NaN` also produces `NaN`.
 - **Root Cause Analysis:** Unfamiliarity with JavaScript numeric coercion rules for `undefined` vs `null` vs numbers.
 - **Verification Exercise / Question:** Tested in the Diagnostic POS project (`calculateDiscount` and `checkout` totals) to ensure all calculation functions strictly `return` numbers and avoid `NaN`.
-- **Resolution Evidence:** Pending project completion & review.
+- **Resolution Evidence:** 2026-11-16 — All 5 POS functions explicitly return typed values (`calculateDiscount`, `checkout`, etc.) and pass TC-01 through TC-08 with zero `NaN` leaks.
 
 ## [MISC-003] Array Loop Boundary & Zero-Based Indexing (Off-By-One Error)
 - **Date Identified:** 2026-11-11
@@ -89,12 +89,20 @@ Whenever a conceptual misunderstanding surfaces during quizzes, code tracing, ex
 
 ## [MISC-010] Premature State Mutation Inside Validation Loop & Premature Return (`return inventory[j].stock = ...`)
 - **Date Identified:** 2026-11-13
-- **Status:** Improving
+- **Status:** Resolved
 - **Developer's Incorrect Mental Model:** Placed stock deduction (`for (let j...) return inventory[j].stock = ...`) inside `checkout()`'s Phase 1 validation loop, breaking atomicity and returning `14` on the first item.
 - **Correct Engineering Mental Model:** Keep validation completely read-only. Only deduct stock in a separate Phase 3 loop *after* every item and `cashTendered` have passed validation. Additionally, `return x = y` exits the function immediately with `y`; never place `return` inside a loop that must process multiple items.
 - **Root Cause Analysis:** Trying to finish validation + subtotal + stock update all in a single pass, plus recurring `return` inside loop habit.
 - **Verification Exercise / Question:** Move stock deduction into Phase 3 after `cashTendered` validation, verify TC-05 and TC-07 leave `inventory` stocks untouched on failure, and return `{ success: true, subtotal, discount, finalTotal, change }`.
-- **Resolution Evidence:** 2026-11-13 — Moved stock deduction into Phase 3 (`cart.forEach`) after `cashTendered` validation and verified receipt + return object on happy path; awaiting full TC-01..TC-08 test run (TC-05/TC-07 verification).
+- **Resolution Evidence:** 2026-11-16 — Verified against full TC-01..TC-08 suite: TC-05 and TC-07 cleanly abort with zero inventory mutation (`i5[0].stock === 5`, `i7[3].stock === 15`).
+
+## [MISC-011] Conflating Redeclaration (`const a = ...` twice) with Reassignment (`a = ...`)
+- **Date Identified:** 2026-11-16
+- **Status:** Improving
+- **Developer's Incorrect Mental Model:** Wrote `const a = {}; const a = {1,2,3};` as an example of *reassignment*, repeating the `const` keyword on the second line (and using `{1,2,3}` instead of array `[1, 2, 3]` or `{ key: value }`).
+- **Correct Engineering Mental Model:** **Redeclaration** repeats the declaration keyword (`let`/`const`/`var`) for the same identifier in the same scope (`const a = {}; const a = [];` -> `SyntaxError`). **Reassignment** omits the declaration keyword and uses `=` to point an already-declared variable to a new value (`a = [];` -> `TypeError` for `const`, valid for `let`).
+- **Root Cause Analysis:** Focusing on changing the value on the right-hand side of `=` without noticing that repeating `const`/`let` creates a second declaration rather than an assignment statement.
+- **Verification Exercise / Question:** Classify `let x = 1; x = 2;` vs `let x = 1; let x = 2;` vs `const arr = [1]; arr.push(2);` and confirm which ones succeed vs throw `TypeError` or `SyntaxError`.
 
 ---
 
