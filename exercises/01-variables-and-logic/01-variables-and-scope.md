@@ -15,21 +15,21 @@ let cash = 500;
 {
   const cash = 200;
   var registerId = "POS-01";
-  console.log("Inside:", cash);
+  console.log("Inside:", cash); // 200
 }
-console.log("Outside cash:", cash);
-console.log("Outside registerId:", registerId);
+console.log("Outside cash:", cash); // 500
+console.log("Outside registerId:", registerId); // POS-01 
 
 // Snippet B
 const receipt = { total: 100, items: ["Kape"] };
-receipt.items.push("Pandesal");
-receipt.total = 120;
-console.log(receipt);
+receipt.items.push("Pandesal"); // items = ["Kape", "Pandesal"]
+receipt.total = 120; // total = 120;
+console.log(receipt); // {total = 120, items = ["Kape", "Pandesal"]}
 
 // Snippet C
-console.log(a);
+console.log(a); // undefined
 var a = 10;
-console.log(b);
+console.log(b); // ReferenceError variable use before the initialization
 let b = 20;
 ```
 
@@ -41,8 +41,10 @@ let b = 20;
 	 - registerId escape from {} block scoper because it use the var to declare the registerId. var can access to inner or outer scrope 
 2. Does Snippet B throw a `TypeError`? Explain the difference between `const` reassignment and object mutation. 
      - No it was not throw error. 
-     - const reassignment 
+     - const reassignment is assigning new value to decalared and initialized variable, while object mutation only uses the address to the memory to modified the value
 3. In Snippet C, what prints for `a`, and what exact error occurs on `console.log(b)`?
+     - Undefined for a 
+    - ReferenceError variable use before the initialization
 
 ---
 
@@ -53,7 +55,7 @@ Inspect this code and explain the **two** scope bugs without running it:
 let shiftTotal = 0;
 
 function addSale(amount) {
-  let shiftTotal = 0;
+  let shiftTotal = 0; 
   shiftTotal += amount;
   return shiftTotal;
 }
@@ -61,10 +63,15 @@ function addSale(amount) {
 for (var i = 0; i < 3; i++) {
   // simulate 3 sales of 50
   addSale(50);
-}
+} // because it uses var 
 
 console.log("Shift Total:", shiftTotal); // Expected 150, prints 0!
 console.log("Loop index:", i);           // Should not be accessible here!
+
+// Bug 1 shiftTotal because shiftTotal was declared again inside the addSale function scope it now shadowing the outside shiftTotal variable and the data get from the shiftTotal += amount is stay in the function
+
+// Bug 2 i because var can escape the block scope the variable i can be access outside of the for block.
+
 ```
 
 ---
